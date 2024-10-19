@@ -16,11 +16,11 @@ app.get('/sdxl', async (req, res) => {
 
     const response = await axios({
       method: 'get',
-      url: `https://sandipbaruwal.onrender.com/fluxdev?prompt=${encodeURIComponent(prompt)}`,
+      url: `https://smfahim.xyz/flux2?prompt=${encodeURIComponent(prompt)}`,
       responseType: 'arraybuffer'
     });
 
-    res.set('Content-Type', 'image/jpeg');
+    res.set('Content-Type', 'image/gif');
     res.send(Buffer.from(response.data, 'binary'));
 
   } catch (error) {
