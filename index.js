@@ -30,5 +30,5 @@ app.get('/sdxl', async (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Server listening at http://localhost:${port} Made With ⚡ By NZ R`);
+  console.log(`Server listening at http://localhost:${port} Made With ⚡ By NZR`);
 });
