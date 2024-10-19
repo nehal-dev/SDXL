@@ -20,7 +20,7 @@ app.get('/sdxl', async (req, res) => {
       responseType: 'arraybuffer'
     });
 
-    res.set('Content-Type', 'image/gif'); 
+    res.set('Content-Type', 'image/jpeg'); 
     res.send(Buffer.from(response.data, 'binary'));
 
   } catch (error) {
@@ -30,5 +30,4 @@ app.get('/sdxl', async (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Server listening at https://smfahim.xyz:${port}`);
-});
+  console.log(`Server listening at :${port} Made With ⚡ By NZ R`)
