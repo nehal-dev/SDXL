@@ -1,7 +1,6 @@
 const express = require('express');
-const axios = require('axios');
-const sharp = require('sharp');
 const cors = require('cors');
+const axios = require('axios');
 const app = express();
 const port = 3000;
 
@@ -21,18 +20,8 @@ app.get('/sdxl', async (req, res) => {
       responseType: 'arraybuffer'
     });
 
-    const imageBuffer = Buffer.from(response.data, 'binary');
-
-    const processedImage = await sharp(imageBuffer)
-      .resize(1024, 1024, {
-        fit: sharp.fit.inside,
-        withoutEnlargement: true
-      })
-      .gif({ quality: 100, effort: 6 })
-      .toBuffer();
-
-    res.set('Content-Type', 'image/gif');
-    res.send(processedImage);
+    res.set('Content-Type', 'image/gif'); 
+    res.send(Buffer.from(response.data, 'binary'));
 
   } catch (error) {
     console.error('Error generating image:', error);
@@ -41,5 +30,5 @@ app.get('/sdxl', async (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
+  console.log(`Server listening at https://smfahim.xyz:${port}`);
 });
