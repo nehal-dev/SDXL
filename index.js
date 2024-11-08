@@ -6,10 +6,16 @@ const port = 3000;
 
 app.use(cors());
 
-const bannedKeywords = ['boobs', 'pussy', 'explicit'];
+const bannedPatterns = [
+  /b[o0]{2,}bs/i, /p[u*]+ssy/i, /h[o0]rny/i, /n[a@]ked/i, /s[e3]x/i,
+  /d[i1]ck/i, /v[a@]g[i1]na/i, /c[u*]m/i, /sl[u*]t/i, /wh[o0]re/i,
+  /n[i1]pples/i, /f[a@]p/i, /p[o0]rn/i, /n[u*]de/i, /c[o0]ck/i,
+  /r[a@]pe/i, /b[e3]avers/i, /b[a@]lls/i, /t[i1]ts/i, /g[a@]ngb[a@]ng/i,
+  /squ[i1]rt/i, /tw[a@]t/i, /b[i1]tch/i, /m[i1]lf/i, /y[a@]nk/i
+];
 
 function containsBannedKeywords(prompt) {
-  return bannedKeywords.some(keyword => prompt.toLowerCase().includes(keyword));
+  return bannedPatterns.some(pattern => pattern.test(prompt));
 }
 
 app.get('/sdxl', async (req, res) => {
