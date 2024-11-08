@@ -6,12 +6,31 @@ const port = 3000;
 
 app.use(cors());
 
+const bannedKeywords = ['boobs', 'pussy', 'explicit'];
+
+function containsBannedKeywords(prompt) {
+  return bannedKeywords.some(keyword => prompt.toLowerCase().includes(keyword));
+}
+
 app.get('/sdxl', async (req, res) => {
   try {
     const { prompt } = req.query;
 
     if (!prompt) {
       return res.status(400).json({ error: 'Prompt is required' });
+    }
+
+    if (containsBannedKeywords(prompt)) {
+      console.warn('Banned prompt attempted:', prompt);
+
+      const gifResponse = await axios({
+        method: 'get',
+        url: 'https://i.ibb.co/5jNv9DB/image.gif',
+        responseType: 'arraybuffer'
+      });
+
+      res.set('Content-Type', 'image/gif');
+      return res.send(Buffer.from(gifResponse.data, 'binary'));
     }
 
     const response = await axios({
