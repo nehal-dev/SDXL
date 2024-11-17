@@ -1,9 +1,20 @@
 {
+  "name": "vercel-express-app",
+  "version": "1.0.0",
+  "description": "Express app optimized for deployment on Vercel",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "build": "echo 'No build step required for this app'"
+  },
   "dependencies": {
     "axios": "^1.7.7",
     "cors": "^2.8.5",
     "express": "^4.21.1",
     "node-cache": "^5.1.2",
     "sharp": "^0.33.5"
+  },
+  "engines": {
+    "node": ">=14.x"
   }
 }
